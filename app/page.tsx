@@ -19,15 +19,14 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar";
+import { fetchUsers } from "./actions/fetchUser";
 
-interface User {
+export interface User {
   name: string;
   number: string;
 }
 const testUsers: User[] = [
   { name: "Alice", number: "123" },
-  { name: "Bob", number: "456" },
-  { name: "Charlie", number: "789" },
 ];
 
 export default function Home() {
@@ -36,12 +35,18 @@ export default function Home() {
 
 
   useEffect(() => {
+    const fetchAndSetUsers = async () => {
+      const resp = await fetchUsers()
+      setUsers(resp.users)
+      setUsersCount(resp.userCount)
+    }
+    fetchAndSetUsers();
     const eventSource = new EventSource('/api/realtime');
-
     eventSource.onmessage = function (event) {
       const data = JSON.parse(event.data);
       console.log('Received an event:', data);
-      setUsersCount(data.after.one)
+      setUsersCount((prev) => prev + 1)
+      setUsers((prev) => [...prev, data.created]);
     };
 
     return () => {

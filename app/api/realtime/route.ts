@@ -20,7 +20,6 @@ export async function GET(req: NextRequest) {
             const stream = await prisma.user.stream();
             for await (const event of stream) {
                 controller.enqueue(`data: ${JSON.stringify(event)}\n\n`);
-                console.log(event);
             }
         },
     });
