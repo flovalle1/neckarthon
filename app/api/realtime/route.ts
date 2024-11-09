@@ -6,7 +6,7 @@ const apiKey: string = process.env.PULSE_API_KEY ?? '';
 
 const prisma = new PrismaClient().$extends(
     withPulse({ apiKey: apiKey })
-);;
+);
 
 export async function GET(req: NextRequest) {
     const headers = new Headers({
@@ -18,7 +18,6 @@ export async function GET(req: NextRequest) {
     const stream = new ReadableStream({
         async start(controller) {
             const stream = await prisma.user.stream();
-
             for await (const event of stream) {
                 controller.enqueue(`data: ${JSON.stringify(event)}\n\n`);
                 console.log(event);

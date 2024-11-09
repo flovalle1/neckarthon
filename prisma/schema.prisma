@@ -8,13 +8,20 @@ datasource db {
 }
 
 model User {
-    id    Int     @id @default(autoincrement())
-    email String  @unique
-    name  String?
+    id     Int    @id @default(autoincrement())
+    name   String
+    number String
 }
 
-model Registrant {
-    id     Int     @id @default(autoincrement())
-    name   String
-    number String?
+model IdeenMessage {
+    id     Int    @id @default(autoincrement())
+    text   String
+    author String
+}
+
+model Meinungsbild {
+    id    Int @id @default(autoincrement())
+    one   Int
+    two   Int
+    three Int
 }
