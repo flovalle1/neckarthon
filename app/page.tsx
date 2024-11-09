@@ -35,6 +35,7 @@ export default function Home() {
 
 
   useEffect(() => {
+    console.log("runs")
     const fetchAndSetUsers = async () => {
       const resp = await fetchUsers()
       setUsers(resp.users)
