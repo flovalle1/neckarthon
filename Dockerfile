@@ -26,7 +26,7 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED=1
-
+ENV DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNGExMzg0NjItNGVmNi00NmUwLWI1NzItNDM5NDc2NmJjM2JjIiwidGVuYW50X2lkIjoiMzdkOTExYjc1MmQzNDU5OWIwODk2YjAwYTk3MzEyMzM4NDU4ZjJhMDdkYzQ1MTgwODQwMzhjMzM1NGQ0OTg3MiIsImludGVybmFsX3NlY3JldCI6ImFkMzk5YjUzLTRkMGEtNDNiMi1hNzllLTFlMzg1ZmUzNjg2NCJ9.yGsMGZOn40mtvfjKEvdnbLCJ7BkpQD7ufrcklEGhBKI"
 RUN npx prisma migrate deploy
 RUN npx prisma generate
 RUN \
