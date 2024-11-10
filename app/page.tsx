@@ -3,6 +3,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
@@ -40,28 +41,25 @@ const testUsers: User[] = [
 ];
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
   chrome: {
-    label: "Chrome",
-    color: "hsl(var(--chart-1))",
+    label: "Trifft voll zu",
+    color: "green",
   },
   safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
+    label: "Trifft ziemlich zu",
+    color: "lightgreen",
   },
   firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
+    label: "Trifft etwas zu",
+    color: "orange",
   },
   edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
+    label: "Trifft wenig zu",
+    color: "#FF7F7F",
   },
   other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
+    label: "Trifft garnicht zu",
+    color: "red",
   },
 } satisfies ChartConfig
 
@@ -95,7 +93,7 @@ export default function Home() {
 
   return (
     <div className="grid justify-items-center min-h-screen p-8 pb-10 gap-1 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <Tabs defaultValue="overview" className="space-y-4" onValueChange={setSelectedTab}>
+      <Tabs defaultValue="nutzer" className="space-y-4" onValueChange={setSelectedTab}>
         <TabsList>
           <TabsTrigger value="nutzer">Nutzerübersicht</TabsTrigger>
           <TabsTrigger value="meinungsbild">Meinungsbild</TabsTrigger>
@@ -142,10 +140,17 @@ export default function Home() {
       {selectedTab === 'meinungsbild' && (
         <div className="grid justify-items-center min-h-screen p-8 pb-10 gap-1 sm:p-20 font-[family-name:var(--font-geist-sans)]">
 
-          <Card className="flex flex-col h-96">
+          <Card className="flex flex-col" style={{ height: '500px' }}>
             <CardHeader className="items-center pb-0">
-              <CardTitle>Ergebnisse Umfrage</CardTitle>
-              <CardDescription>Neckarthon WhatsApp Meinungsbild</CardDescription>
+              <CardTitle>Ergebnisse WhatsApp Umfrage Neckarthon</CardTitle>
+              <CardDescription className="whitespace-pre-wrap text-center">
+                <p>
+                  Den Einsatz eines Chatbots halte ich für sinnvoll, um mehr jungen Menschen einen einfachen Weg
+                </p>
+                <p>
+                  zu bieten am demokratischen Leben in Tübingen teilzunehmen.
+                </p>
+              </CardDescription>
             </CardHeader>
             <CardContent className="flex-1 pb-0">
               <ChartContainer
@@ -197,9 +202,18 @@ export default function Home() {
                 </PieChart>
               </ChartContainer>
             </CardContent>
+            <CardFooter className="flex-col gap-2 text-sm">
+              {Object.entries(chartConfig).map(([key, { label, color }]) => (
+                <div key={key} className="flex items-center gap-2 font-medium leading-none">
+                  <span className="w-4 h-4" style={{ backgroundColor: color }}></span>
+                  <p>{label}</p>
+                </div>
+              ))}
+            </CardFooter>
           </Card>
         </div>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 }
