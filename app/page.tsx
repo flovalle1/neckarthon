@@ -28,6 +28,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar";
+import { countMeinungen, Meinung } from "./actions/countMeinungen";
 import { fetchUsers } from "./actions/fetchUser";
 
 export interface User {
@@ -38,13 +39,6 @@ const testUsers: User[] = [
   { name: "Alice", number: "123" },
 ];
 
-const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 190, fill: "var(--color-other)" },
-]
 const chartConfig = {
   visitors: {
     label: "Visitors",
@@ -74,31 +68,29 @@ const chartConfig = {
 export default function Home() {
   const [usersCount, setUsersCount] = useState<number>(0)
   const [users, setUsers] = useState<User[]>(testUsers)
-  const [selectedTab, setSelectedTab] = useState<string>('overview')
+  const [selectedTab, setSelectedTab] = useState<string>('nutzer')
+  const [chartData, setChartData] = useState<Meinung[]>([])
 
   const totalVisitors = useMemo(() => {
     return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
-  }, [])
+  }, [chartData])
+
 
   useEffect(() => {
-    console.log("runs")
-    const fetchAndSetUsers = async () => {
-      const resp = await fetchUsers()
-      setUsers(resp.users)
-      setUsersCount(resp.userCount)
-    }
-    fetchAndSetUsers();
-    // const eventSource = new EventSource('/api/realtime');
-    // eventSource.onmessage = function (event) {
-    //   const data = JSON.parse(event.data);
-    //   console.log('Received an event:', data);
-    //   setUsersCount((prev) => prev + 1)
-    //   setUsers((prev) => [...prev, data.created]);
-    // };
-
-    // return () => {
-    //   eventSource.close();
-    // };
+    const interval = setInterval(() => {
+      const fetchAndSetUsers = async () => {
+        const resp = await fetchUsers()
+        setUsers(resp.users)
+        setUsersCount(resp.userCount)
+      }
+      fetchAndSetUsers();
+      const countAndSetMeinungen = async () => {
+        const resp = await countMeinungen()
+        setChartData(resp.meinungen)
+      }
+      countAndSetMeinungen();
+    }, 3500);
+    return () => clearInterval(interval);
   }, []);
 
   return (
