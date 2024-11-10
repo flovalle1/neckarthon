@@ -134,6 +134,14 @@ export default function Home() {
           height={300}
           className="fixed top-1/2 transform -translate-y-1/2"
           style={{ right: '180px' }}
+        />
+        <Image
+          src="/qr-code-neckar.png"
+          alt="Fixed Image"
+          width={300}
+          height={300}
+          className="fixed top-1/2 transform -translate-y-1/2"
+          style={{ left: '180px' }}
         /></>)}
 
 
