@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TÜBOT - WhatsApp Bot for Tübingen Citizens
 
-## Getting Started
+TÜBOT is the Implementation Price winner of the 2024 Hackathon in Tübingen. ([Neckarthon](https://www.startupbw.de/events/landesweiter-veranstaltungskalender/veranstaltung/neckarthon-2024-in-tuebingen))
 
-First, run the development server:
+![Participants)](https://github.com/user-attachments/assets/c3387496-2b6b-4b1a-aeea-c3d71eadb848)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Here you can find the [Pitch](https://youtu.be/HaKJI6EF3hM) and the [TÜBOT Whitepaper](https://github.com/user-attachments/files/19569560/TUBOT.Whitepaper.pdf)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+TÜBOT is a NextJS-based WhatsApp bot that keeps citizens of Tübingen connected with their city.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+TÜBOT aims to engage citizens of Tübingen as a project of the . The can provide:
 
-## Learn More
+- **Regular Updates**: Information about local events, initiatives, and city council news
+- **Civic Engagement**: Opportunities for citizens to share ideas and suggestions
+- **Community Feedback**: Surveys to gauge public opinion on local matters
+- **Low-Barrier Communication**: Utilizing WhatsApp's familiar interface for maximum accessibility
 
-To learn more about Next.js, take a look at the following resources:
+## Key Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Simple opt-in/opt-out system
+- Web application for message management and survey analytics
+- QR code-based registration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Technology Stack
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- NextJS frontend and backend
+- Docker containerization
+- Google Cloud Platform deployment
+- WhatsApp Business API
